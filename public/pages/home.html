@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Github Apis task</title>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default">
+          <div class="container-fluid">
+             <div class="navbar-header">
+               <a class="navbar-brand" href="#">Github Apis</a>
+           </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">Fetch User Profile</a></li>
+		    </ul>
+      </div>
+   </nav>
+  </header>
+
+  <div class="container searchbar">
+    <div class="row">
+       <div class="col-md-8">
+         <div class="form-group">
+           <input type="text" class="form-control" id="search_box" placeholder="Type Username to get github profile...." name="search">
+          </div>
+       <button class="btn btn-primary" name="getUser" id="search">Get Username</button>
+       <div class="loader" style="display: none;">
+           <img src="img/load.gif" alt="loading" width="100" height="100" />
+      </div>
+
+     </div>  
+  </div>  
+</div>
+
+
+<div class="container">
+  <img src="" id="profile_pic" width="200px" height="200px" alt="Profile Pic"
+  style="margin-top: 20px;">
+
+
+  <h1>Name</h1>
+  <p id="name"></p><hr/>
+
+  <h1>Location</h1>
+  <p id="location"></p><hr/>
+
+  <h1>Login</h1>
+  <p id="login"></p><hr/>
+
+  <h1>Bio</h1>
+  <p id="bio"></p><hr/>
+
+  <h1>Email</h1>
+  <p id="email"></p><hr/>
+
+
+    <h1>Blog</h1>
+  <p id="blog"></p><hr/>
+
+    <h1>Company Name</h1>
+  <p id="company"></p><hr/>
+
+
+</div>
+
+<!-- footer -->
+
+ <footer>
+   <p style="text-align: center;">@copyright 2018</p>
+ </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#search").click(function(){
+      $('.loader').show();
+      var username = $("#search_box").val();
+      $.ajax({
+      method:"GET",
+      url:"/search?username="+username,
+      success:function(res){
+        console.log(res);
+        $('.loader').hide();
+        $("#profile_pic").attr("src",res['user_details']['avatar_url']);  
+        $("#name").text(res['user_details']['name']);
+        $("#location").text(res['user_details']['location']);
+        $("#login").text(res['user_details']['login']);
+        $("#bio").text(res['user_details']['bio']);
+        $("#email").text(res['user_details']['email']);
+        $("#blog").text(res['user_details']['blog']);
+        $("#company").text(res['user_details']['company']);
+       
+      }
+    });  
+    });
+    
+  });
+  
+
+</script>
+
+</html>

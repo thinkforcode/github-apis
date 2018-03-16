@@ -1,0 +1,22 @@
+{
+  "name": "github-apis",
+  "version": "1.0.0",
+  "description": "this is the github apis to search public profiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "github-apis",
+    "expressjs"
+  ],
+  "author": "Manmohan Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.10",
+    "request": "^2.85.0"
+  }
+}
